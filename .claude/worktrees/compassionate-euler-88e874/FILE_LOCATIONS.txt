@@ -1,0 +1,182 @@
+================================================================================
+YOUTUBE DOWNLOADER - FILE LOCATIONS GUIDE
+Updated: June 8, 2026
+================================================================================
+
+📱 FRONTEND CODE
+================================================================================
+src/features/youtube-downloader/
+├── contracts/youtube.contract.ts      - Type definitions
+├── services/
+│   ├── youtubeService.ts              - Backend API calls
+│   └── downloadService.ts             - Download management
+├── hooks/useYoutubeDownloads.ts       - State management
+├── store/downloadsStore.ts            - UI panel state
+├── ui/
+│   ├── DownloadsScreen.tsx            - Main screen
+│   └── components/
+│       ├── DownloadItem.tsx           - Individual download
+│       └── QualitySelector.tsx        - Quality picker
+└── index.ts                           - Exports
+
+📚 FRONTEND DOCUMENTATION (PROPER LOCATION!)
+================================================================================
+src/docs/features/youtube-downloader/
+├── README.md                          - Overview & status
+├── scope.md                           - What's in/out of scope
+├── architecture.md                    - Technical architecture
+├── data-model.md                      - Database schema
+├── ui-behavior.md                     - UI flows & interactions
+└── roadmap.md                         - Future enhancements
+
+🔧 BACKEND CODE
+================================================================================
+Master-Android-App-RustBE - Backend/
+├── src/main.rs                        - Complete backend server
+├── Cargo.toml                         - Dependencies
+└── Cargo.lock                         - Lock file
+
+📚 BACKEND DOCUMENTATION
+================================================================================
+Master-Android-App-RustBE - Backend/
+├── README.md                          - Setup & how to run
+└── PROGRESS.md                        - What's complete
+
+📋 QUICK REFERENCE GUIDES (ROOT LEVEL)
+================================================================================
+Project Root (D:\a) Apps\Master Android App\MasterAndroidApp\)
+├── CURRENT_STAGE.md                   ← WHERE WE ARE (READ THIS FIRST!)
+├── TESTING_GUIDE.md                   ← HOW TO TEST
+├── QUICK_REFERENCE.md                 ← Quick lookup
+├── FILE_LOCATIONS.txt                 ← This file
+├── ACTION_PLAN.md                     ← What to do next
+├── COMPLETION_SUMMARY.md              ← What's done
+└── YOUTUBE_DOWNLOADER_SETUP.md        ← Full setup guide
+
+⚙️ PROJECT CONFIGURATION
+================================================================================
+Project Root:
+├── CLAUDE.md                          - UI/code guidelines
+├── DESIGN_SYSTEM.md                   - Theme system (colors, spacing)
+├── App.tsx                            - App entry point
+├── package.json                       - Dependencies
+└── metro.config.js                    - Metro config
+
+🗂️ DATABASE
+================================================================================
+src/storage/db/
+├── migrations.ts                      - Schema (includes youtube_downloads)
+└── database.ts                        - Database initialization
+
+🏠 NAVIGATION
+================================================================================
+src/app/
+├── AppRoot.tsx                        - Navigation setup (DownloadsScreen added)
+└── ...other screens
+
+🎨 SHARED COMPONENTS
+================================================================================
+src/shared/
+├── components/
+│   ├── Button.tsx
+│   ├── Text.tsx
+│   ├── Container.tsx
+│   └── ...
+└── theme/
+    ├── colors.ts
+    ├── spacing.ts
+    └── insets.ts
+
+================================================================================
+KEY RELATIONSHIPS
+================================================================================
+
+🔗 Frontend → Backend
+   youtubeService.ts → http://localhost:3000/api/youtube/metadata
+   youtubeService.ts → http://localhost:3000/api/youtube/download-url
+   downloadService.ts → RNFS.downloadFile(url)
+
+🔗 Frontend → Database
+   downloadService.ts → SQLite youtube_downloads table
+   useYoutubeDownloads.ts → Queries for UI updates
+
+🔗 Frontend → Storage
+   downloadService.ts → /Documents/youtube-downloads/
+                      → /videos/, /audio/, /thumbnails/
+
+================================================================================
+TESTING SETUP (3 SERVERS)
+================================================================================
+
+SERVER 1: BACKEND (Optional, in Backend folder)
+  Location: D:\a) Apps\Master Android App\Master-Android-App-RustBE - Backend
+  Command:  cd "path" && cargo run --release
+  Port:     http://localhost:3000
+  Status:   Ready (mock endpoints)
+
+SERVER 2: METRO (Required, in Frontend folder)
+  Location: D:\a) Apps\Master Android App\MasterAndroidApp
+  Command:  cd "path" && npm start
+  Port:     http://localhost:8081
+  Status:   Ready
+
+SERVER 3: ANDROID DEVICE (Deploy)
+  Location: D:\a) Apps\Master Android App\MasterAndroidApp
+  Command:  npm run android
+  Status:   Ready (3 devices connected via adb)
+
+================================================================================
+QUICK START
+================================================================================
+
+1. READ:    CURRENT_STAGE.md
+2. READ:    TESTING_GUIDE.md
+3. RUN:     npm start (Metro)
+4. RUN:     npm run android (Deploy)
+5. TEST:    On your device
+
+================================================================================
+IMPORTANT FILES TO READ (IN ORDER)
+================================================================================
+
+📖 First Read (Overview):
+   1. CURRENT_STAGE.md       - Where we are
+   2. TESTING_GUIDE.md       - How to test
+
+📖 Then Read (Details):
+   3. src/docs/features/youtube-downloader/README.md
+   4. CLAUDE.md              - Code guidelines
+   5. DESIGN_SYSTEM.md       - Theme system
+
+📖 Reference (When needed):
+   6. src/docs/features/youtube-downloader/architecture.md
+   7. src/docs/features/youtube-downloader/data-model.md
+   8. Master-Android-App-RustBE - Backend/README.md
+
+================================================================================
+GIT IGNORED (Not in repo)
+================================================================================
+
+node_modules/                 - Dependencies
+target/                       - Rust build artifacts
+*.log                         - Logs
+.DS_Store                     - macOS files
+youtube-downloads/            - Downloaded videos
+
+================================================================================
+DEPENDENCIES
+================================================================================
+
+Frontend (in package.json):
+  - react-native-fs (RNFS)      - File operations
+  - react-native-nitro-sqlite   - SQLite database
+  - react-native-safe-area-context - Safe area insets
+  - react-native-mmkv           - Storage (MMKV)
+
+Backend (in Cargo.toml):
+  - axum                        - Web framework
+  - tokio                       - Async runtime
+  - serde                       - JSON serialization
+  - tower-http                  - CORS support
+
+================================================================================

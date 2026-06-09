@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "React Native Metro Bundler",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "port": 8081,
+      "autoPort": true
+    },
+    {
+      "name": "YouTube Backend (yt-dlp)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "backend:start"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}
